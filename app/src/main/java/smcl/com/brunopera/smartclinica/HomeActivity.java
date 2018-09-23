@@ -1,8 +1,11 @@
 package smcl.com.brunopera.smartclinica;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -11,7 +14,7 @@ import android.widget.ImageButton;
 
 public class HomeActivity extends AppCompatActivity {
 
-
+    private static  int SPLASH_TIME_OUT= 3000;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -25,17 +28,44 @@ public class HomeActivity extends AppCompatActivity {
         final ImageButton btnGPS = (ImageButton) findViewById(R.id.btnGPS);
         final ImageButton btnAjuda = (ImageButton) findViewById(R.id.btnAjuda);
 
+
+
         btnCadastrar.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent event) {
 
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    Log.d("Pressed", "Button pressed");
+                   // Log.d("Pressed", "Button pressed");
                     btnCadastrar.setImageResource(R.drawable.microphone64pressed);
+
+
+
+
+                    android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(HomeActivity.this);
+                    View v = getLayoutInflater().inflate(R.layout.alerta,null);
+                    builder.setView(v);
+                    android.app.AlertDialog dialog = builder.create();
+                    dialog.show();
+
+
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(getApplicationContext(), Nome.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }, SPLASH_TIME_OUT);
+
+
+
+
+
+
                 }
                 else if (event.getAction() == MotionEvent.ACTION_UP) {
 
-                    Log.d("Released", "Button released");
+                   // Log.d("Released", "Button released");
                     btnCadastrar.setImageResource(R.drawable.microphone64);
 
 
