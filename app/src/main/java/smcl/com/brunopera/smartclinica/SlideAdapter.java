@@ -1,11 +1,13 @@
 package smcl.com.brunopera.smartclinica;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -13,6 +15,10 @@ import android.widget.TextView;
 public class SlideAdapter extends PagerAdapter {
     Context context;
     LayoutInflater inflater;
+
+
+
+
 
     // list of imagesk
     public int[] lst_images = {
@@ -23,24 +29,24 @@ public class SlideAdapter extends PagerAdapter {
     };
     // list of titles
     public String[] lst_title = {
-            "COSMONAUT",
-            "SATELITE",
-            "GALAXY",
-            "ROCKET"
+            "Lorem Ipsum",
+            "Lorem Ipsum",
+            "Lorem Ipsum",
+            "Lorem Ipsum"
     }   ;
     // list of descriptions
     public String[] lst_description = {
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,"
+            "Lorem ipsum dolor sit amet, ad quo etiam honestatis disputando, epicuri prodesset reprimique id ius. Te est debet nonumy. Id volutpat posidonium mea, eu pro pericula contentiones.",
+            "Lorem ipsum dolor sit amet, ad quo etiam honestatis disputando, epicuri prodesset reprimique id ius. Te est debet nonumy. Id volutpat posidonium mea, eu pro pericula contentiones.",
+            "Lorem ipsum dolor sit amet, ad quo etiam honestatis disputando, epicuri prodesset reprimique id ius. Te est debet nonumy. Id volutpat posidonium mea, eu pro pericula contentiones.",
+            "Lorem ipsum dolor sit amet, ad quo etiam honestatis disputando, epicuri prodesset reprimique id ius. Te est debet nonumy. Id volutpat posidonium mea, eu pro pericula contentiones."
     };
     // list of background colors
     public int[]  lst_backgroundcolor = {
-            Color.rgb(1,188,212),
-            Color.rgb(1,188,212),
-            Color.rgb(1,188,212),
-            Color.rgb(1,188,212)
+            Color.rgb(255,255,255),
+            Color.rgb(255,255,255),
+            Color.rgb(255,255,255),
+            Color.rgb(255,255,255)
     };
 
 
