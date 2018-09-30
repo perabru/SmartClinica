@@ -11,6 +11,8 @@ import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import smcl.com.brunopera.smartclinica.helper.Base64Custom;
+
 public class ConexaoBD {
 
     //FiREBASE - vai no nó raiz do firebase
@@ -18,12 +20,15 @@ public class ConexaoBD {
     //adiciona a child cadastro em um objeto
     static DatabaseReference prontuario = referencia.child("prontuario");
 
-    public static String uniquePK = prontuario.push().getKey();
+   public static String uniquePK = prontuario.push().getKey();
+
+
 
     private static FirebaseAuth autenticacao;
 
 
     Cadastro cad = new Cadastro();
+
     String[] parts;
 
     //String newPK;
@@ -33,11 +38,14 @@ public class ConexaoBD {
              newPK = partes[2];
         }*/
 
+
+   // public  String uniquePK = Base64Custom.codificarBase64(cad.getEmail());
+
     public void inserirNomeBD(String nome) {
 
         cad.setNome(nome);
         //cad.setDataAtual(cad.getDataAtual());
-        prontuario.child(uniquePK).child("Dados Iniciais").setValue(cad);
+        prontuario.child(uniquePK).child("Nome").setValue(cad);
     }
 
     public void inserirIdadeBD(ArrayList<String> idade) {
@@ -52,6 +60,12 @@ public class ConexaoBD {
 
     }
 
+
+    public void inserirIdadeBDCorreacao(String idade) {
+
+             prontuario.child(uniquePK).child("Idade").setValue(cad);
+
+    }
     public void inserirDataNasc(String dataNascimento) {
 
         cad.setDataAniversario(dataNascimento);
@@ -119,9 +133,9 @@ public class ConexaoBD {
 
     public void inserirEmail(String email) {
 
-        email.replaceAll("arroba","@");
+        //email.replaceAll("arroba","@");
         cad.setEmail(email.replaceAll("\\s+",""));
-        prontuario.child(uniquePK).child("Email").setValue(cad);
+        prontuario.child(uniquePK).child("E-mail").setValue(cad);
 
     }
 

@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -16,6 +17,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+
+import smcl.com.brunopera.smartclinica.helper.Base64Custom;
 
 public class CadastroActivity extends AppCompatActivity {
 
@@ -89,9 +92,16 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if( task.isSuccessful()){
-                    //Toast.makeText(CadastroActivity.this,"Sucesso ao cadastrar usuário", Toast.LENGTH_SHORT).show();
 
-                    finish();
+
+                    Toast.makeText(CadastroActivity.this,"Sucesso ao cadastrar usuário", Toast.LENGTH_SHORT).show();
+
+                    ConexaoBD conexaoBD = new ConexaoBD();
+                    conexaoBD.inserirNomeBD(usuario.getNome());
+                    conexaoBD.inserirData();
+                    conexaoBD.inserirEmail(usuario.getEmail());
+
+                   finish();
 
 
                 }else{

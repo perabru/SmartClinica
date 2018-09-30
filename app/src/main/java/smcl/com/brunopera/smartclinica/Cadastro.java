@@ -7,8 +7,8 @@ import java.util.Date;
 public class Cadastro {
 
     private String nome;
-    /*  private Calendar data = Calendar.getInstance();
-      private String dataAtual = DateFormat.getDateInstance().format(data.getTime());*/
+     private Calendar data = Calendar.getInstance();
+      private String dataAtual = DateFormat.getDateInstance().format(data.getTime());
     private String dataAniversario;
     private String estadoCivil;
     private String endereco;
@@ -20,7 +20,7 @@ public class Cadastro {
     private String profissao;
     private String email;
     private String senha;
-
+    private String idUsuario;
 
 
 
@@ -127,5 +127,13 @@ public class Cadastro {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
     }
 }

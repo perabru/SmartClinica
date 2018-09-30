@@ -1,6 +1,10 @@
 package smcl.com.brunopera.smartclinica;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -41,5 +45,42 @@ public class PrincipalActivity extends AppCompatActivity {
         Toast.makeText(PrincipalActivity.this, "Usuario desconectado!", Toast.LENGTH_SHORT).show();
         finish();
     }
+
+    public void iniciarChat(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("CHAT");
+        builder.setMessage("Ainda não está disponível o chat");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                //finish();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+    }
+
+    public void enviarEmail(View view) {
+
+        Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","brunomichel00@gmail.com", null));
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Contato - ");
+        emailIntent.putExtra(Intent.EXTRA_TEXT, "Bom dia...");
+        startActivity(Intent.createChooser(emailIntent, "Enviar e-mail..."));
+    }
+
+  public void iniciarProntuario(View view) {
+
+      startActivity(new Intent(this, Idade.class));
+     // finish();
+
+    }
+
+
+
+
 
 }

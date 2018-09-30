@@ -24,8 +24,15 @@
         <activity
             android:name=".PrincipalActivity"
             android:label="@string/title_activity_principal"
-            android:theme="@style/Theme.Design.NoActionBar"
-            ></activity>
+            android:theme="@style/Theme.Design.NoActionBar" />
+        <activity
+            android:name=".Idade"
+            android:label="@string/title_activity_idade"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Aniversario"
+            android:label="@string/title_activity_aniversario"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
