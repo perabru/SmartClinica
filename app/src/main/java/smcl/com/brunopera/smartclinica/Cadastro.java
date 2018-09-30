@@ -19,6 +19,9 @@ public class Cadastro {
     private String celular;
     private String profissao;
     private String email;
+    private String senha;
+
+
 
 
 
@@ -118,5 +121,11 @@ public class Cadastro {
         this.email = email;
     }
 
+    public String getSenha() {
+        return senha;
+    }
 
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
 }

@@ -35,7 +35,7 @@
         android:layout_width="300sp"
         android:layout_height="wrap_content"
         android:background="#03d3f3"
-        android:onClick="cadastro"
+        android:onClick="irParaTelaCadastro"
         android:text="CADASTRE-SE"
         android:textColor="@android:color/white"
         android:textSize="22sp" />

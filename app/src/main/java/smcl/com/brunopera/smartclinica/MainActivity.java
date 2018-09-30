@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void cadastro(View view){
+    public void irParaTelaCadastro(View view){
         Intent myIntent = new Intent(this.getApplicationContext(), CadastroActivity.class);
         startActivityForResult(myIntent, 0);
 

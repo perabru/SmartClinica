@@ -2,6 +2,7 @@ package smcl.com.brunopera.smartclinica;
 
 import android.support.v7.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -15,9 +16,12 @@ public class ConexaoBD {
     //FiREBASE - vai no nó raiz do firebase
     static DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     //adiciona a child cadastro em um objeto
-    static DatabaseReference cadastro = referencia.child("cadastro");
+    static DatabaseReference prontuario = referencia.child("prontuario");
 
-    public static String uniquePK = cadastro.push().getKey();
+    public static String uniquePK = prontuario.push().getKey();
+
+    private static FirebaseAuth autenticacao;
+
 
     Cadastro cad = new Cadastro();
     String[] parts;
@@ -33,7 +37,7 @@ public class ConexaoBD {
 
         cad.setNome(nome);
         //cad.setDataAtual(cad.getDataAtual());
-        cadastro.child(uniquePK).child("Dados Iniciais").setValue(cad);
+        prontuario.child(uniquePK).child("Dados Iniciais").setValue(cad);
     }
 
     public void inserirIdadeBD(ArrayList<String> idade) {
@@ -44,35 +48,35 @@ public class ConexaoBD {
         parts = str[0].split("\\s+");
 
 
-        cadastro.child(uniquePK).child("Idade").setValue(Integer.parseInt(parts[0]));
+        prontuario.child(uniquePK).child("Idade").setValue(Integer.parseInt(parts[0]));
 
     }
 
     public void inserirDataNasc(String dataNascimento) {
 
         cad.setDataAniversario(dataNascimento);
-        cadastro.child(uniquePK).child("Data Nascimento").setValue(cad);
+        prontuario.child(uniquePK).child("Data Nascimento").setValue(cad);
 
     }
 
     public void inserirEstadoCivil(String estadoCivil) {
 
         cad.setEstadoCivil(estadoCivil);
-        cadastro.child(uniquePK).child("Estado Civil").setValue(cad);
+        prontuario.child(uniquePK).child("Estado Civil").setValue(cad);
 
     }
 
     public void inserirEndereco(String endereco) {
 
         cad.setEndereco(endereco);
-        cadastro.child(uniquePK).child("Endereço").setValue(cad);
+        prontuario.child(uniquePK).child("Endereço").setValue(cad);
 
     }
 
     public void inserirBairro(String bairro) {
 
         cad.setEndereco(bairro);
-        cadastro.child(uniquePK).child("Bairro").setValue(cad);
+        prontuario.child(uniquePK).child("Bairro").setValue(cad);
 
     }
 
@@ -80,21 +84,21 @@ public class ConexaoBD {
     public void inserirCidade(String cidade) {
 
         cad.setEndereco(cidade);
-        cadastro.child(uniquePK).child("Cidade").setValue(cad);
+        prontuario.child(uniquePK).child("Cidade").setValue(cad);
 
     }
 
     public void inserirCEP(String CEP) {
 
         cad.setEndereco(CEP);
-        cadastro.child(uniquePK).child("CEP").setValue(cad);
+        prontuario.child(uniquePK).child("CEP").setValue(cad);
 
     }
 
     public void inserirTelefone(String telefone) {
 
         cad.setTelefone(telefone);
-        cadastro.child(uniquePK).child("Telefone").setValue(cad);
+        prontuario.child(uniquePK).child("Telefone").setValue(cad);
 
     }
 
@@ -102,14 +106,14 @@ public class ConexaoBD {
     public void inserirCelular(String celular) {
 
         cad.setCelular(celular);
-        cadastro.child(uniquePK).child("Celular").setValue(cad);
+        prontuario.child(uniquePK).child("Celular").setValue(cad);
 
     }
 
     public void inserirProfissao(String profissao) {
 
         cad.setProfissao(profissao);
-        cadastro.child(uniquePK).child("Profissao").setValue(cad);
+        prontuario.child(uniquePK).child("Profissao").setValue(cad);
 
     }
 
@@ -117,7 +121,7 @@ public class ConexaoBD {
 
         email.replaceAll("arroba","@");
         cad.setEmail(email.replaceAll("\\s+",""));
-        cadastro.child(uniquePK).child("Email").setValue(cad);
+        prontuario.child(uniquePK).child("Email").setValue(cad);
 
     }
 
@@ -125,14 +129,25 @@ public class ConexaoBD {
         Calendar data = Calendar.getInstance();
         String dataAtual = DateFormat.getDateInstance().format(data.getTime());
 
-        cadastro.child(uniquePK).child("Data").setValue(dataAtual);
+        prontuario.child(uniquePK).child("Data").setValue(dataAtual);
 
     }
 
     public void inserirLocalizacao(String localizacaoAtual) {
 
 
-        cadastro.child(uniquePK).child("Localização Atual").setValue(localizacaoAtual);
+        prontuario.child(uniquePK).child("Localização Atual").setValue(localizacaoAtual);
+
+    }
+
+
+    //retorna instancia do fb
+    public static FirebaseAuth getFirebaseAutenicacao(){
+
+        if(autenticacao == null) {
+            autenticacao = FirebaseAuth.getInstance();
+        }
+        return autenticacao;
 
     }
 
