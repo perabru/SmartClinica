@@ -32,6 +32,38 @@
         <activity
             android:name=".Aniversario"
             android:label="@string/title_activity_aniversario"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".EstadoCivil"
+            android:label="@string/title_activity_estado_civil"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Endereco"
+            android:label="@string/title_activity_endereco"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Bairro"
+            android:label="@string/title_activity_bairro"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Cidade"
+            android:label="@string/title_activity_cidade"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".CEP"
+            android:label="@string/title_activity_cep"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Telefone"
+            android:label="@string/title_activity_telefone"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Celular"
+            android:label="@string/title_activity_celular"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Profissao"
+            android:label="@string/title_activity_profissao"
             android:theme="@style/AppTheme"></activity>
     </application>
 

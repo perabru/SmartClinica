@@ -3,4 +3,12 @@
     <string name="title_activity_principal">PrincipalActivity</string>
     <string name="title_activity_idade">Idade</string>
     <string name="title_activity_aniversario">Aniversario</string>
+    <string name="title_activity_estado_civil">EstadoCivil</string>
+    <string name="title_activity_endereco">Endereco</string>
+    <string name="title_activity_bairro">Bairro</string>
+    <string name="title_activity_cidade">Cidade</string>
+    <string name="title_activity_cep">CEP</string>
+    <string name="title_activity_telefone">Telefone</string>
+    <string name="title_activity_celular">Celular</string>
+    <string name="title_activity_profissao">Profissao</string>
 </resources>

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Aniversario extends AppCompatActivity {
+public class Celular extends AppCompatActivity {
 
     //https://www.youtube.com/watch?v=ND6a4V-xdjI
     //https://pt.stackoverflow.com/questions/50773/como-usar-onactivityresult-quando-h%C3%A1-mais-de-um-startactivityforresult
@@ -30,19 +30,19 @@ public class Aniversario extends AppCompatActivity {
     private Cadastro cad = new Cadastro();
     //Array que recebe primeiramente o que foi falado (nome, sobrenome e idade)
     private ArrayList<String> voiceInText;
-    EditText editNascimento;
+    EditText editCelular;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aniversario);
+        setContentView(R.layout.activity_celular);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        editNascimento = (EditText)findViewById(R.id.editNascimento);
-       editNascimento.setEnabled(false);
+        editCelular = (EditText)findViewById(R.id.editCelular);
+        editCelular.setEnabled(false);
         openMic();
 
     }
@@ -54,7 +54,7 @@ public class Aniversario extends AppCompatActivity {
 
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Olá, me fale sua data de nascimento");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Olá, diga seu Celular");
         intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 20000000);
 
         try{
@@ -84,17 +84,17 @@ public class Aniversario extends AppCompatActivity {
                     try {
                         voiceInText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                        editNascimento.setText(voiceInText.get(0));
+                        editCelular.setText(voiceInText.get(0));
 
                         Log.i("AQUI", voiceInText.toString());
 
                         /*ConexaoBD cbd = new ConexaoBD();
                         cbd.inserirDataNasc(voiceInText.get(0));*/
 
-                       // Toast.makeText(getApplicationContext(), "Dados cadastrados com sucesso!", Toast.LENGTH_SHORT).show();
+                        // Toast.makeText(getApplicationContext(), "Dados cadastrados com sucesso!", Toast.LENGTH_SHORT).show();
 
                     }catch(Exception ex){
-                        Toast.makeText(getApplicationContext(), "Não foi possível gravar a data, tente de novo"+ ex, Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Não foi possível gravar, tente de novo", Toast.LENGTH_LONG).show();
                         openMic();
                         break;
                     }
@@ -113,21 +113,19 @@ public class Aniversario extends AppCompatActivity {
 
     }
 
-    public void editarNascimento(View view){
-        editNascimento.setEnabled(true);
+    public void editarCelular(View view){
+        editCelular.setEnabled(true);
 
 
     }
 
-    public void proximaTela2(View view) {
-
-
+    public void proximaTela(View view) {
 
         ConexaoBD cbd = new ConexaoBD();
-        cbd.inserirDataNasc(editNascimento.getText().toString());
+        cbd.inserirCelular(editCelular.getText().toString());
 
 
-        Intent myIntent = new Intent(getApplicationContext(), EstadoCivil.class);
+        Intent myIntent = new Intent(getApplicationContext(), Profissao.class);
         startActivityForResult(myIntent, 0);
 
 
