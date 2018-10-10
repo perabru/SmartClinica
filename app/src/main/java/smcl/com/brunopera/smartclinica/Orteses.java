@@ -15,10 +15,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Profissao extends AppCompatActivity {
+public class Orteses extends AppCompatActivity {
 
     //https://www.youtube.com/watch?v=ND6a4V-xdjI
     //https://pt.stackoverflow.com/questions/50773/como-usar-onactivityresult-quando-h%C3%A1-mais-de-um-startactivityforresult
@@ -30,19 +31,19 @@ public class Profissao extends AppCompatActivity {
     private Cadastro cad = new Cadastro();
     //Array que recebe primeiramente o que foi falado (nome, sobrenome e idade)
     private ArrayList<String> voiceInText;
-    EditText editProfissao;
+    EditText editOrteses;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profissao);
+        setContentView(R.layout.activity_orteses);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        editProfissao = (EditText)findViewById(R.id.editProfissao);
-        editProfissao.setEnabled(false);
+        editOrteses = (EditText)findViewById(R.id.editOrteses);
+        editOrteses.setEnabled(false);
         openMic();
 
     }
@@ -54,7 +55,7 @@ public class Profissao extends AppCompatActivity {
 
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Olá, sua Profissão");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Utiliza alguma órtese?");
         intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 20000000);
 
         try{
@@ -84,7 +85,7 @@ public class Profissao extends AppCompatActivity {
                     try {
                         voiceInText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                        editProfissao.setText(voiceInText.get(0));
+                        editOrteses.setText(voiceInText.get(0));
 
                         Log.i("AQUI", voiceInText.toString());
 
@@ -113,8 +114,8 @@ public class Profissao extends AppCompatActivity {
 
     }
 
-    public void editarProfissao(View view){
-        editProfissao.setEnabled(true);
+    public void editarOrteses(View view){
+        editOrteses.setEnabled(true);
 
 
     }
@@ -122,10 +123,27 @@ public class Profissao extends AppCompatActivity {
     public void proximaTela(View view) {
 
         ConexaoBD cbd = new ConexaoBD();
-        cbd.inserirProfissao(editProfissao.getText().toString());
+        cbd.inserirOrteses(editOrteses.getText().toString());
+
+        cbd.inserirDiagnostico();
+        cbd.inserirMedicoResponsavel();
+        cbd.inserirHistoria();
+        cbd.inserirPA();
+        cbd.inserirFC();
+        cbd.reflexosOsteotendineos();
+        cbd.tonusMuscular();
+        cbd.sensibilidadeSuperficial();
+        cbd.sensibilidadeProfunda();
+        cbd.trocasPosturais();
+        cbd.forcaMuscularPorSeguimento();
+        cbd.encurtamentoPorSegmento();
+        cbd.complicacoesEDeformidadesPorSeguimento();
+        cbd.conclusao();
+        cbd.metas();
 
 
-        Intent myIntent = new Intent(getApplicationContext(), Medicamentos.class);
+
+        Intent myIntent = new Intent(getApplicationContext(), PrincipalActivity.class);
         startActivityForResult(myIntent, 0);
 
 

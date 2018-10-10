@@ -11,7 +11,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.transition.Slide;
+import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,10 +23,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
+import com.google.firebase.auth.FirebaseUser;
 
 public class PrincipalActivity extends AppCompatActivity {
 
     private FirebaseAuth autenticacao;
+    private TextView txtOla;
+
+    ConexaoBD conexaoBD = new ConexaoBD();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,14 @@ public class PrincipalActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+
+        txtOla = findViewById(R.id.txtOla);
+
+        //txtOla.setText();
+        Log.i("USER",currentFirebaseUser.toString() );
+
+
 
     }
 
@@ -40,8 +55,9 @@ public class PrincipalActivity extends AppCompatActivity {
 
         autenticacao = ConexaoBD.getFirebaseAutenicacao();
 
-        autenticacao.signOut();
 
+        autenticacao.signOut();
+        startActivity(new Intent(this, LoginActivity.class));
         Toast.makeText(PrincipalActivity.this, "Usuario desconectado!", Toast.LENGTH_SHORT).show();
         finish();
     }

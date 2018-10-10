@@ -18,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class Profissao extends AppCompatActivity {
+public class Medicamentos extends AppCompatActivity {
 
     //https://www.youtube.com/watch?v=ND6a4V-xdjI
     //https://pt.stackoverflow.com/questions/50773/como-usar-onactivityresult-quando-h%C3%A1-mais-de-um-startactivityforresult
@@ -30,19 +30,19 @@ public class Profissao extends AppCompatActivity {
     private Cadastro cad = new Cadastro();
     //Array que recebe primeiramente o que foi falado (nome, sobrenome e idade)
     private ArrayList<String> voiceInText;
-    EditText editProfissao;
+    EditText editMedicamentos;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profissao);
+        setContentView(R.layout.activity_medicamentos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-        editProfissao = (EditText)findViewById(R.id.editProfissao);
-        editProfissao.setEnabled(false);
+        editMedicamentos = (EditText)findViewById(R.id.editMedicamentos);
+        editMedicamentos.setEnabled(false);
         openMic();
 
     }
@@ -54,7 +54,7 @@ public class Profissao extends AppCompatActivity {
 
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
 
-        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Olá, sua Profissão");
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT,"Toma algum medicamento ou fez alguma cirurgia recente?");
         intent.putExtra(RecognizerIntent.EXTRA_SPEECH_INPUT_MINIMUM_LENGTH_MILLIS, 20000000);
 
         try{
@@ -84,7 +84,7 @@ public class Profissao extends AppCompatActivity {
                     try {
                         voiceInText = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                        editProfissao.setText(voiceInText.get(0));
+                        editMedicamentos.setText(voiceInText.get(0));
 
                         Log.i("AQUI", voiceInText.toString());
 
@@ -113,8 +113,8 @@ public class Profissao extends AppCompatActivity {
 
     }
 
-    public void editarProfissao(View view){
-        editProfissao.setEnabled(true);
+    public void editarMedicamentos(View view){
+        editMedicamentos.setEnabled(true);
 
 
     }
@@ -122,10 +122,10 @@ public class Profissao extends AppCompatActivity {
     public void proximaTela(View view) {
 
         ConexaoBD cbd = new ConexaoBD();
-        cbd.inserirProfissao(editProfissao.getText().toString());
+        cbd.inserirMedicamentos(editMedicamentos.getText().toString());
 
 
-        Intent myIntent = new Intent(getApplicationContext(), Medicamentos.class);
+        Intent myIntent = new Intent(getApplicationContext(), Orteses.class);
         startActivityForResult(myIntent, 0);
 
 

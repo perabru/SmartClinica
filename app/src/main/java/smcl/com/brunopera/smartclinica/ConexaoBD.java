@@ -1,10 +1,19 @@
 package smcl.com.brunopera.smartclinica;
 
+import android.database.sqlite.SQLiteDatabase;
+import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
 import java.text.DateFormat;
@@ -13,21 +22,34 @@ import java.util.Calendar;
 
 import smcl.com.brunopera.smartclinica.helper.Base64Custom;
 
+import static android.content.Context.MODE_PRIVATE;
+
+
+
 public class ConexaoBD {
+
+
+        String idUsuario;
+
+//    static String currentuser = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
 
     //FiREBASE - vai no nó raiz do firebase
     static DatabaseReference referencia = FirebaseDatabase.getInstance().getReference();
     //adiciona a child cadastro em um objeto
-    static DatabaseReference prontuario = referencia.child("prontuario");
+   static DatabaseReference prontuario = referencia.child("prontuario");
+   // static DatabaseReference prontuario = referencia.child(currentuser);
 
-   public static String uniquePK = prontuario.push().getKey();
 
+    static CadastroActivity ca = new CadastroActivity();
+    private static String uniquePK = prontuario.push().getKey();
 
+   // public static String uniquePK =FirebaseAuth.getInstance().getCurrentUser().getUid();
 
     private static FirebaseAuth autenticacao;
 
-
-    Cadastro cad = new Cadastro();
+     Cadastro cad = new Cadastro();
+    //public  String uniquePK = this.cad.getChavePrimaria();
 
     String[] parts;
 
@@ -41,7 +63,20 @@ public class ConexaoBD {
 
    // public  String uniquePK = Base64Custom.codificarBase64(cad.getEmail());
 
+
+    public String getIdUsuario() {
+        return idUsuario;
+    }
+
+    public void setIdUsuario(String idUsuario) {
+        this.idUsuario = idUsuario;
+    }
+
+
+
     public void inserirNomeBD(String nome) {
+
+
 
         cad.setNome(nome);
         //cad.setDataAtual(cad.getDataAtual());
@@ -147,12 +182,121 @@ public class ConexaoBD {
 
     }
 
+
+
+    public void inserirDiagnostico() {
+      // cad.setDiagnostico("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Diagnóstico");
+
+    }
+
+    public void inserirMedicoResponsavel() {
+       // cad.setMedicoResponsavel("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Médico Responsável");
+
+    }
+
+    public void inserirHistoria() {
+        //cad.setHistoria("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("História");
+
+    }
+
+    public void inserirMedicamentos(String medicamentos) {
+        cad.setMedicamentos(medicamentos);
+        prontuario.child(uniquePK).child("Medicamentos").setValue(cad);
+
+    }
+
+
+    public void inserirOrteses(String orteses) {
+       cad.setOrteseDispositivoAuxilio(orteses);
+        prontuario.child(uniquePK).child("Órteses ou dispositivo de auxilio").setValue(cad);
+
+    }
+
+
+    public void inserirPA() {
+       // cad.setPressaoArterial("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("PA (mmHG)").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void inserirFC() {
+        cad.setFrequenciaCardiaca("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("FC (bpm)").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void reflexosOsteotendineos() {
+      //  cad.setReflexosOsteotendineos("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Reflexos Osteotendineos").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void tonusMuscular() {
+        //cad.setTonusMuscular("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Tonus Muscular").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void sensibilidadeSuperficial() {
+        //cad.setSensibilidadeSuperficial("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Sensibilidade Superficial").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+
+    public void sensibilidadeProfunda() {
+        //cad.setSensibilidadeProfunda("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Sensibilidade Profunda").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void trocasPosturais() {
+        cad.setTrocasPosturais("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Trocas Posturais").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void forcaMuscularPorSeguimento() {
+        //cad.setForcaMuscularPorSeguimento("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Força Muscular por segmento").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+    public void encurtamentoPorSegmento() {
+        //cad.setEncurtamentoPorSeguimento("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Encurtamento por seguimento").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void complicacoesEDeformidadesPorSeguimento() {
+       // cad.setComplicacoesEDeformidadesPorSeguimento("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Complicações e deformidades por seguimento").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void conclusao() {
+        //cad.setConclusao("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Conclusão").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+    public void metas() {
+        //cad.setMetas("AGUARDANDO ATUALIZAÇÃO");
+        prontuario.child(uniquePK).child("Metas").setValue("AGUARDANDO ATUALIZAÇÃO");
+
+    }
+
+
+
     public void inserirLocalizacao(String localizacaoAtual) {
 
 
         prontuario.child(uniquePK).child("Localização Atual").setValue(localizacaoAtual);
 
     }
+
 
 
     //retorna instancia do fb
@@ -163,6 +307,42 @@ public class ConexaoBD {
         }
         return autenticacao;
 
+    }
+
+
+    public static String getUniquePK() {
+        return uniquePK;
+    }
+
+    public static void setUniquePK(String uniquePK) {
+        ConexaoBD.uniquePK = uniquePK;
+    }
+
+
+
+
+    //Recuperar usuario para tela inicial
+    public void recuperar ( TextView user){
+
+
+
+
+
+/*
+        DatabaseReference prontuario2 = referencia.child("prontuario").child("-LOE0R5FbhIyeG1fbV0e").child("Nome").child("nome");
+        prontuario2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                user.setText("Olá, "+dataSnapshot.getValue().toString());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
     }
 
 

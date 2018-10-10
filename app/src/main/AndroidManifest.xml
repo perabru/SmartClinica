@@ -64,7 +64,9 @@
         <activity
             android:name=".Profissao"
             android:label="@string/title_activity_profissao"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".Medicamentos" />
+        <activity android:name=".Orteses"></activity>
     </application>
 
 </manifest>

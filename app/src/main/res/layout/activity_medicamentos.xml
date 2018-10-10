@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white"
-    tools:context=".PrincipalActivity"
+    tools:context=".Medicamentos"
     tools:layout_editor_absoluteY="25dp">
 
     <android.support.design.widget.AppBarLayout
@@ -34,12 +34,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="33dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         fab:menu_animationDelayPerItem="50"
         fab:menu_backgroundColor="@android:color/transparent"
         fab:menu_buttonSpacing="0dp"
@@ -47,7 +46,6 @@
         fab:menu_colorPressed="#03d3f9"
         fab:menu_colorRipple="#99FFFFFF"
         fab:menu_fab_label="Menu"
-
         fab:menu_fab_size="normal"
         fab:menu_icon="@drawable/ic_add_white_24dp"
         fab:menu_labels_colorNormal="#333333"
@@ -61,6 +59,7 @@
         fab:menu_labels_padding="8dp"
         fab:menu_labels_paddingBottom="4dp"
         fab:menu_labels_paddingLeft="8dp"
+
         fab:menu_labels_paddingRight="8dp"
         fab:menu_labels_paddingTop="4dp"
         fab:menu_labels_position="left"
@@ -77,91 +76,72 @@
         fab:menu_showShadow="true">
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_verProntuario"
+            android:id="@+id/menu_irParaOProximo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_folder_white_24dp"
-            app:fab_colorNormal="@color/colorPrimaryMenuItem"
-            fab:fab_label="Ver meu prontuario"
+            android:src="@drawable/ic_check_white_24dp"
+            app:fab_colorNormal="@android:color/holo_green_light"
+            fab:fab_label="Ir para o próximo"
+            android:onClick="proximaTela"
             fab:fab_size="mini"
 
             />
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_iniciarProntuario"
+            android:id="@+id/menu_gravarDeNovo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="iniciarProntuario"
             android:src="@drawable/ic_mic_white_24dp"
-            app:fab_colorNormal="@color/colorPrimaryMenuItem"
-            fab:fab_label="Iniciar prontuario"
+            app:fab_colorNormal="?android:attr/colorActivatedHighlight"
+            android:onClick="abrirMic"
+            fab:fab_label="Gravar de novo"
+
             fab:fab_size="mini" />
 
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_iniciarChat"
+            android:id="@+id/menu_Editar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="iniciarChat"
-            android:src="@drawable/ic_chat_white_24dp"
-            app:fab_colorNormal="@color/colorPrimaryMenuItem"
-            fab:fab_label="Iniciar chat"
-            fab:fab_size="mini" />
+            android:src="@drawable/ic_edit_black_24dp"
+            app:fab_colorNormal="?attr/colorError"
+            fab:fab_label="Editar"
+            android:onClick="editarMedicamentos"
 
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="enviarEmail"
-            android:src="@drawable/ic_email_white_24dp"
-            app:fab_colorNormal="@color/colorPrimaryMenuItem"
-            fab:fab_label="Enviar e-mail"
-            fab:fab_size="mini" />
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/menu_desconectar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="desconectarUsuario"
-            android:src="@drawable/ic_import_export_white_24dp"
-            app:fab_colorNormal="@color/colorPrimaryMenuItem"
-            fab:fab_label="Desconectar"
             fab:fab_size="mini" />
 
 
     </com.github.clans.fab.FloatingActionMenu>
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="7dp"
-        android:background="@color/colorPrimaryDarkMenuItem"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/menu"
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:text="Medicamento ou cirurgias"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/txtOla"
-            android:layout_width="358dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25sp"
-            android:layout_marginTop="50sp"
-            android:text="Carregando..."
-            android:textSize="24sp" />
+    <EditText
+        android:id="@+id/editMedicamentos"
+        android:layout_width="284dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="88dp"
+        android:ems="10"
+        android:hint="Ex: Sim? Quais?"
+        android:inputType="textPersonName"
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="25sp"
-            android:layout_marginTop="40sp"
-            android:text="Rua das Seringueiras, 171 - Cel: 12981418071"
-            android:textSize="18sp" />
-    </LinearLayout>
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
 
 </android.support.constraint.ConstraintLayout>
